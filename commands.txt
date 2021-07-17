@@ -1,0 +1,6 @@
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+kubectl port-forward nats-depl-6c89448ccc-6xxm6 8222:8222
+kubectl port-forward nats-depl-6c89448ccc-6xxm6 4222:4222
+
+FOR /f "tokens=*" %i IN ('docker ps -q') DO docker stop %i
+for /F %i in ('docker images -a -q') do docker rmi -f %i
